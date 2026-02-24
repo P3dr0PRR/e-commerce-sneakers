@@ -13,7 +13,7 @@ const Login = () => {
       await login(email, password);
       navigate("/home");
     } catch (error) {
-      console.error("Login failed:", error);
+      console.error("Login falho:", error);
     }
   }
 
