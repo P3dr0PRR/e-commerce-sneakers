@@ -20,7 +20,7 @@ const Login = () => {
   return (
     <section className="min-h-screen bg-gray-900 flex flex-col items-center justify-center px-6 py-2 cursor-default">
       <header className="flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold text-teal-400 mb-6 tracking-widest drop-shadow-lg drop-shadow-smoke drop-shadow-teal-400">
+        <h1 className="text-4xl font-bold text-teal-400 mb-6 tracking-widest">
           SOLE
         </h1>
         <h2 className="text-xl text-gray-300/50 mb-4">Loja premium de tênis</h2>
