@@ -58,7 +58,7 @@ const Home = () => {
         <h2 className="text-white text-wide text-9xl font-bold tracking-widest">
           Os melhores tenis do
         </h2>
-        <p className="text-9xl text-teal-400 mt-4">Mundo</p>
+        <p className="text-9xl text-teal-400 mt-4">Mundo.</p>
         <p className="text-gray-300/50 text-2xl mt-6">
           Encontre o par perfeito para cada momento
         </p>
