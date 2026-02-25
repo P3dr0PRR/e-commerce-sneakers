@@ -18,7 +18,7 @@ const Home = () => {
     navigate("/");
   }
 
-  const { log, user } = useAuth();
+  const { user } = useAuth();
 
   const colectionYear = [
     { year: 2026 },
