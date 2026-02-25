@@ -3,7 +3,9 @@ import { getSneakers, deleteSneakers } from "../services/products";
 import { useAuth } from "../contexts/AuthContext";
 
 export function useProducts() {
-  const [products, setProducts] = useState<{ id: number }[]>([]);
+  const [products, setProducts] = useState<
+    { id: number; name: string; price: number }[]
+  >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { token } = useAuth();

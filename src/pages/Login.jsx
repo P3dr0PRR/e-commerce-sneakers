@@ -20,12 +20,12 @@ const Login = () => {
   return (
     <section className="min-h-screen bg-gray-900 flex flex-col items-center justify-center px-6 py-2 cursor-default">
       <header className="flex flex-col items-center justify-center">
-        <h1 className="text-4xl font-bold text-teal-400 mb-6 tracking-widest">
+        <h1 className="text-4xl font-bold text-teal-400 mb-3 md:mb-4 lg:mb-6 tracking-widest">
           SOLE
         </h1>
-        <h2 className="text-xl text-gray-300/50 mb-4">Loja premium de tênis</h2>
+        <h2 className="text-xl text-gray-300/50 mb-1">Loja premium de tênis</h2>
       </header>
-      <div className="bg-gray-800/40 rounded-lg border border-teal-600 w-full max-w-md p-8  shadow-lg flex flex-col items-center">
+      <article className="bg-gray-800/40 rounded-lg border border-teal-600 w-full max-w-md p-8  shadow-lg flex flex-col items-center md:mt-10 lg:mt-20">
         <h3 className="text-xl text-white mb-4 font-bold tracking-wide">
           Entre na sua conta para continuar
         </h3>
@@ -78,7 +78,7 @@ const Login = () => {
         <p className="flex gap-2 text-gray-300/50">
           Não tem conta ? <button className="text-teal-400">Cadastre-se</button>
         </p>
-      </div>
+      </article>
     </section>
   );
 };

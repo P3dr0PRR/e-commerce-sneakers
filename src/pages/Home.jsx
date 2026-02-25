@@ -52,7 +52,7 @@ const Home = () => {
           </nav>
         </div>
       </header>
-      <article className="flex flex-col items-start justify-center mt-20">
+      <article className="flex flex-col items-start justify-center mt-4 md:mt-10 lg:mt-20">
         <p className="text-xl md:text-2xl lg:text-3xl text-teal-400 mb-4">
           // Coleção de {colectionYear[0].year}
         </p>
