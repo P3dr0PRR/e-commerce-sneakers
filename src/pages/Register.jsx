@@ -20,7 +20,7 @@ const Register = () => {
   }
 
   function handleLogin() {
-    navigate("/login");
+    navigate("/");
   }
 
   return (

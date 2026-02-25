@@ -35,9 +35,9 @@ const Admin = () => {
     }
   }
 
-  function handleLogout() {
+  function handleReturn() {
     logout();
-    navigate("/");
+    navigate("/home");
   }
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>{error}</p>;
@@ -62,16 +62,16 @@ const Admin = () => {
           <nav className="flex gap-4">
             <button
               className="px-2 md:p-2 md:w-30 text-gray-300/50 border border-teal-400 bg-transparent rounded-md hover:font-semibold"
-              onClick={handleLogout}
+              onClick={handleReturn}
             >
               RETORNAR
             </button>
           </nav>
         </div>
       </header>
-      <div className="flex flex-col md:flex-row items-center md:items-start justify-center w-full md:justify-evenly bg-pink-300">
+      <div className="flex flex-col md:flex-row items-center md:items-start justify-center w-full md:justify-evenly">
         <article className="bg-gray-800/40 rounded-lg border border-teal-600 w-full max-w-md p-8  shadow-lg flex flex-col items-center mt-4 md:mt-10 lg:mt-20">
-          <div className="flex flex-col bg-lime-300 w-full justify-start">
+          <div className="flex flex-col w-full justify-start">
             <h3 className="text-xl text-white mb-4 font-bold tracking-wide">
               Novo Produto
             </h3>

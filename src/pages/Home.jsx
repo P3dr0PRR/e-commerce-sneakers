@@ -15,7 +15,7 @@ const Home = () => {
 
   function Leave() {
     logout();
-    navigate("/login");
+    navigate("/");
   }
 
   const { log, user } = useAuth();

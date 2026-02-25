@@ -12,7 +12,7 @@ const Login = () => {
   async function handleSubmit() {
     try {
       await login(email, password);
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.error("Login falho:", error);
     }
@@ -70,9 +70,9 @@ const Login = () => {
           </div>
         </div>
         <div className="flex items-end justify-end w-full max-w-md mt-4">
-          <button className="text-gray-300/50 text-sm mr-4 tracking-wide">
+          {/* <button className="text-gray-300/50 text-sm mr-4 tracking-wide">
             esqueci minha senha
-          </button>
+          </button> */}
         </div>
         <button
           className="w-full bg-teal-400 text-gray-900 py-3 rounded-lg hover:bg-teal-500 transition-colors duration-300 my-6 tracking-wide"
