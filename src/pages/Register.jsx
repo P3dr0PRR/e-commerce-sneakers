@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { func } from "prop-types";
 
 const Register = () => {
   const { register } = useAuth();
@@ -16,6 +17,10 @@ const Register = () => {
     } catch (error) {
       console.error("Erro de registro:", error);
     }
+  }
+
+  function handleLogin() {
+    navigate("/login");
   }
 
   return (
@@ -96,7 +101,10 @@ const Register = () => {
         <span className="text-gray-300/50">ou</span>
 
         <p className="flex gap-2 text-gray-300/50">
-          Já tem conta ? <button className="text-teal-400">Entrar</button>
+          Já tem conta ?{" "}
+          <button className="text-teal-400" onClick={handleLogin}>
+            Entrar
+          </button>
         </p>
       </div>
     </section>

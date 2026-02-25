@@ -37,7 +37,7 @@ const Admin = () => {
 
   function handleLogout() {
     logout();
-    navigate("/login");
+    navigate("/");
   }
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>{error}</p>;
@@ -64,7 +64,7 @@ const Admin = () => {
               className="px-2 md:p-2 md:w-30 text-gray-300/50 border border-teal-400 bg-transparent rounded-md hover:font-semibold"
               onClick={handleLogout}
             >
-              SAIR
+              RETORNAR
             </button>
           </nav>
         </div>

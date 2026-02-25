@@ -1,9 +1,24 @@
 import { useState, useRef } from "react";
 import { useProducts } from "../hooks/useProducts";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 const Home = () => {
+  const navigate = useNavigate();
   const [selectedBrand, setSelectedBrand] = useState("todos");
   const productsRef = useRef(null);
+  const { logout } = useAuth();
+
+  function goToAdmin() {
+    navigate("/admin");
+  }
+
+  function Leave() {
+    logout();
+    navigate("/login");
+  }
+
+  const { log, user } = useAuth();
 
   const colectionYear = [
     { year: 2026 },
@@ -38,15 +53,23 @@ const Home = () => {
           </h1>
           <p className="flex flex-col md:text-xl text-gray-300/50">
             olá
-            <span className="text-white md:text-xl lg:text-2xl">...</span>
+            <span className="text-white md:text-xl lg:text-2xl">
+              {user?.name}
+            </span>
           </p>
         </div>
         <div>
           <nav className="flex gap-4">
-            <button className="px-2 md:p-2 md:w-30 bg-teal-400  rounded-md hover:font-semibold">
+            <button
+              className="px-2 md:p-2 md:w-30 bg-teal-400  rounded-md hover:font-semibold"
+              onClick={goToAdmin}
+            >
               ADMIN
             </button>
-            <button className="px-2 md:p-2 md:w-30 text-gray-300/50 border border-teal-400 bg-transparent rounded-md hover:font-semibold">
+            <button
+              className="px-2 md:p-2 md:w-30 text-gray-300/50 border border-teal-400 bg-transparent rounded-md hover:font-semibold"
+              onClick={Leave}
+            >
               SAIR
             </button>
           </nav>

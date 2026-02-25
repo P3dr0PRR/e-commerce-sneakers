@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { func } from "prop-types";
 
 const Login = () => {
   const { login } = useAuth();
@@ -11,10 +12,14 @@ const Login = () => {
   async function handleSubmit() {
     try {
       await login(email, password);
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       console.error("Login falho:", error);
     }
+  }
+
+  function handleRegister() {
+    navigate("/register");
   }
 
   return (
@@ -76,7 +81,10 @@ const Login = () => {
           ENTRAR
         </button>
         <p className="flex gap-2 text-gray-300/50">
-          Não tem conta ? <button className="text-teal-400">Cadastre-se</button>
+          Não tem conta ?{" "}
+          <button className="text-teal-400" onClick={handleRegister}>
+            Cadastre-se
+          </button>
         </p>
       </article>
     </section>
