@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 interface Product {
   id: number;
+  brand: string;
   name: string;
   price: number;
 }
@@ -14,12 +15,14 @@ const Admin = () => {
   const { products, loading, error, deleteSneaker } = useProducts();
   const { token, logout } = useAuth();
   const navigate = useNavigate();
+  const [brand, setBrand] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
 
   async function handleCreate() {
     try {
-      await createSneaker(name, Number(price), token!);
+      await createSneaker(name, Number(price), brand, token!);
+      setBrand("");
       setName("");
       setPrice("");
     } catch (error) {
@@ -36,7 +39,6 @@ const Admin = () => {
   }
 
   function handleReturn() {
-    logout();
     navigate("/home");
   }
   if (loading) return <p>Carregando...</p>;
@@ -77,6 +79,23 @@ const Admin = () => {
             </h3>
           </div>
           <div className="p-8 rounded-lg shadow-lg w-full max-w-md">
+            <div className="mb-6">
+              <label
+                htmlFor="text"
+                className="block text-gray-300 mb-2 tracking-wide"
+              >
+                MARCA
+              </label>
+              <input
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+                type="text"
+                id="text"
+                className="w-full bg-black text-white p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400"
+                placeholder="EX: Nike, Adidas, Puma..."
+              />
+            </div>
+
             <div className="mb-6">
               <label
                 htmlFor="text"
@@ -125,7 +144,7 @@ const Admin = () => {
             <h3 className="text-xl text-white mb-4 font-bold tracking-wide">
               Produtos Cadastrados
             </h3>
-            <p className="text-white">x produtos</p>
+            <p className="text-white">{products.length} produtos</p>
           </div>
           <div className="w-full">
             {products.map((product) => (
@@ -134,7 +153,10 @@ const Admin = () => {
                 className="flex justify-between items-center bg-gray-700 p-4 rounded-lg mb-4"
               >
                 <div>
-                  <p className="text-gray-200">{product.name}</p>
+                  <div className="flex">
+                    <p className="text-gray-200">{product.brand}</p>
+                    <p className="text-gray-200 ml-2">{product.name}</p>
+                  </div>
                   <p className="text-teal-400 text-lg">{product.price}</p>
                 </div>
                 <div className="">

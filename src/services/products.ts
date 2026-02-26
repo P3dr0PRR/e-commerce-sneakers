@@ -3,6 +3,7 @@ import { apiFetch } from "./api";
 export async function createSneaker(
   name: string,
   price: number,
+  brand: string,
   token: string,
 ) {
   return apiFetch("/products", {
@@ -11,7 +12,7 @@ export async function createSneaker(
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ name, price }),
+    body: JSON.stringify({ name, price, brand }),
   });
 }
 

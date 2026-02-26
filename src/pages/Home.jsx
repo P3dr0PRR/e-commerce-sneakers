@@ -34,6 +34,11 @@ const Home = () => {
       ? products
       : products.filter((p) => p.brand?.toLowerCase() === selectedBrand);
 
+  // DEBUG
+  console.log("Todos os produtos com brand:", products.map(p => ({ name: p.name, brand: p.brand })));
+  console.log("Brand selecionado:", selectedBrand);
+  console.log("Produtos filtrados:", filtered);
+
   const buttons = [
     { name: "Todos", value: "todos" },
     { name: "Nike", value: "nike" },

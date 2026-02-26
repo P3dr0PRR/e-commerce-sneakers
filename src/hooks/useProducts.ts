@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 export function useProducts() {
   const [products, setProducts] = useState<
-    { id: number; name: string; price: number }[]
+    { id: number; name: string; price: number; brand: string }[]
   >([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
