@@ -12,21 +12,32 @@ interface Product {
 }
 
 const Admin = () => {
-  const { products, loading, error, deleteSneaker } = useProducts();
-  const { token, logout } = useAuth();
+  const { products, loading, error, deleteSneaker, refresh } = useProducts();
+  const { token } = useAuth();
   const navigate = useNavigate();
   const [brand, setBrand] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
+  const [loadingCreate, setLoadingCreate] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleCreate() {
+    setLoadingCreate(true);
+    setSuccessMessage("");
+    setErrorMessage("");
+
     try {
       await createSneaker(name, Number(price), brand, token!);
       setBrand("");
       setName("");
       setPrice("");
+      setSuccessMessage("Produto criado com sucesso!");
+      await refresh();
     } catch (error) {
-      console.error("Erro ao criar produto:", error);
+      setErrorMessage("Erro ao criar produto: " + error);
+    } finally {
+      setLoadingCreate(false);
     }
   }
 
@@ -73,6 +84,8 @@ const Admin = () => {
       </header>
       <div className="flex flex-col md:flex-row items-center md:items-start justify-center w-full md:justify-evenly">
         <article className="bg-gray-800/40 rounded-lg border border-teal-600 w-full max-w-md p-8  shadow-lg flex flex-col items-center mt-4 md:mt-10 lg:mt-20">
+          {successMessage && <p className="text-green-400">{successMessage}</p>}
+          {errorMessage && <p className="text-red-400">{errorMessage}</p>}
           <div className="flex flex-col w-full justify-start">
             <h3 className="text-xl text-white mb-4 font-bold tracking-wide">
               Novo Produto
@@ -133,9 +146,10 @@ const Admin = () => {
 
           <button
             className="w-full bg-teal-400 text-gray-900 py-3 rounded-lg hover:bg-teal-500 transition-colors duration-300 my-6 tracking-wide flex-wrap"
+            disabled={loadingCreate}
             onClick={handleCreate}
           >
-            Cadastrar Produto
+            {loadingCreate ? "Cadastrando..." : "Cadastrar Produto"}
           </button>
         </article>
 

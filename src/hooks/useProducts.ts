@@ -10,17 +10,18 @@ export function useProducts() {
   const [error, setError] = useState<string | null>(null);
   const { token } = useAuth();
 
-  useEffect(() => {
-    async function fetchProducts() {
-      try {
-        const data = await getSneakers(token!);
-        setProducts(data);
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
+  async function fetchProducts() {
+    try {
+      const data = await getSneakers(token!);
+      setProducts(data);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
+  }
+
+  useEffect(() => {
     fetchProducts();
   }, []);
 
@@ -29,5 +30,5 @@ export function useProducts() {
     setProducts(products.filter((product) => product.id !== id));
   }
 
-  return { products, loading, error, deleteSneaker };
+  return { products, loading, error, deleteSneaker, refresh: fetchProducts };
 }

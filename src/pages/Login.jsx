@@ -6,8 +6,8 @@ import { func } from "prop-types";
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("pedro@abracops.info"); // Voltar para ""
+  const [password, setPassword] = useState("12345678#*"); // Voltar para ""
 
   async function handleSubmit() {
     try {
@@ -23,14 +23,14 @@ const Login = () => {
   }
 
   return (
-    <section className="min-h-screen bg-gray-900 flex flex-col items-center justify-center px-6 py-2 cursor-default">
-      <header className="flex flex-col items-center justify-center">
+    <section className="min-h-screen bg-gray-900 flex flex-col px-6 py-2 cursor-default md:items-center ">
+      <header className="flex flex-col items-center justify-center mb-4 lg:mb-0">
         <h1 className="text-4xl font-bold text-teal-400 mb-3 md:mb-4 lg:mb-6 tracking-widest">
           SOLE
         </h1>
         <h2 className="text-xl text-gray-300/50 mb-1">Loja premium de tênis</h2>
       </header>
-      <article className="bg-gray-800/40 rounded-lg border border-teal-600 w-full max-w-md p-8  shadow-lg flex flex-col items-center md:mt-10 lg:mt-20">
+      <article className="bg-gray-800/40 rounded-lg border border-teal-600 w-full p-8  shadow-lg flex flex-col items-center md:mt-10">
         <h3 className="text-xl text-white mb-4 font-bold tracking-wide">
           Entre na sua conta para continuar
         </h3>
