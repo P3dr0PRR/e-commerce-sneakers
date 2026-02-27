@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import { loginUser, registerUser } from "../services/auth";
 
 interface User {
@@ -17,29 +17,20 @@ interface AuthContextType {
 const AuthContext = createContext({} as AuthContextType);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-
-  // Restaurar dados do localStorage ao montar
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    const storedToken = localStorage.getItem("token");
-
-    if (storedUser && storedToken) {
-      setUser(JSON.parse(storedUser));
-      setToken(storedToken);
-    }
-  }, []);
+  const [token, setToken] = useState<string | null>(
+    localStorage.getItem("sole:token"),
+  );
+  const [user, setUser] = useState<User | null>(
+    JSON.parse(localStorage.getItem("sole:user") || "null"),
+  );
 
   async function login(email: string, password: string) {
     const data = await loginUser(email, password);
     setToken(data.token);
     setUser({ name: data.name, email: data.email });
-
-    // Persistir no localStorage
-    localStorage.setItem("token", data.token);
+    localStorage.setItem("sole:token", data.token);
     localStorage.setItem(
-      "user",
+      "sole:user",
       JSON.stringify({ name: data.name, email: data.email }),
     );
   }
@@ -49,12 +40,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   function logout() {
-    setUser(null);
     setToken(null);
-
-    // Limpar localStorage
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    setUser(null);
+    localStorage.removeItem("sole:token");
+    localStorage.removeItem("sole:user");
   }
 
   return (
